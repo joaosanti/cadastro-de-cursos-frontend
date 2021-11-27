@@ -14,7 +14,14 @@ export default function CourseForm({
   const [image, setImage] = useState(Course?.image || '');
   const [teacher, setTeacher] = useState(Course?.teacher || '');
   const [classroom, setClassroom] = useState(Course?.classroom || '');
+  const [dateCreate, setDateCreate] = useState(Course?.dateCreate || '');
+  //const [dateUpdate, setDateUpdate] = useState(Course?.dateUpdate || '');
   const [error, setError] = useState('');
+
+
+
+  let data = new Date();
+  let dataFormatada = (data.getDate() + "/" + ((data.getMonth() + 1)) + "/" + (data.getFullYear()));
 
   useEffect(() => {
     if (createMode) {
@@ -23,8 +30,9 @@ export default function CourseForm({
       setImage('');
       setTeacher('');
       setClassroom('');
+      setDateCreate(dataFormatada);
     }
-  }, [createMode]);
+  }, [createMode, dataFormatada]);
 
   function handleTitleChange(newTitle) {
     setTitle(newTitle);
@@ -43,6 +51,8 @@ export default function CourseForm({
   function handleClassroomChange(newClassroom) {
     setClassroom(newClassroom);
   }
+
+
 
   function clearFields() {
     setTitle('');
@@ -69,7 +79,7 @@ export default function CourseForm({
       setError('');
 
       if (onPersist) {
-        onPersist(title, description, image, teacher, classroom);
+        onPersist(title, description, image, teacher, classroom, dateCreate);
         clearFields();
       }
     } else {
@@ -119,6 +129,8 @@ export default function CourseForm({
         inputValue={classroom}
         onInputChange={handleClassroomChange}
       />
+
+
 
       <div className="flex items-center justify-between">
         {error.trim() !== '' ? <Error>{error}</Error> : <span>&nbsp;</span>}

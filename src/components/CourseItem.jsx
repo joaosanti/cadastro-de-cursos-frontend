@@ -8,7 +8,7 @@ export default function CourseItem({
   onDelete = null,
   onEdit = null,
 }) {
-  const { title, description, image, teacher, classroom } = Course;
+  const { title, description, image, teacher, classroom, dateCreate, dateUpdate } = Course;
 
   function handleDeleteIconClick() {
     if (onDelete) {
@@ -43,6 +43,10 @@ export default function CourseItem({
 
         <li>
           <strong>Sala:</strong> <span>{classroom}</span>
+        </li>
+
+        <li>
+          <strong>Criado:</strong> <span>{dateCreate} - <strong>Atualizado: </strong> {dateUpdate}</span>
         </li>
       </ul>
 

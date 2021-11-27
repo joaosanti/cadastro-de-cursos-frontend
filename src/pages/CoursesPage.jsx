@@ -63,8 +63,8 @@ export default function CoursesPage() {
 
   function handleRadioShowDescriptionClick() {
     // prettier-ignore
-    const updatedcourses = 
-      [...studycourses].map(course => ({...course, showTitle: false}));
+    const updatedcourses =
+      [...studycourses].map(course => ({ ...course, showTitle: false }));
 
     setStudycourses(updatedcourses);
     setRadioButtonShowTitle(false);
@@ -72,8 +72,8 @@ export default function CoursesPage() {
 
   function handleRadioShowTitleClick() {
     // prettier-ignore
-    const updatedcourses = 
-      [...studycourses].map(course => ({...course, showTitle: true}));
+    const updatedcourses =
+      [...studycourses].map(course => ({ ...course, showTitle: true }));
 
     setStudycourses(updatedcourses);
 
@@ -121,7 +121,12 @@ export default function CoursesPage() {
     setSelectedTab(tabIndex);
   }
 
-  async function handlePersist(title, description, image, teacher, classroom) {
+  let data = new Date();
+  let dataFormatada = (data.getDate() + "/" + ((data.getMonth() + 1)) + "/" + (data.getFullYear()));
+
+
+  async function handlePersist(title, description, image, teacher, classroom, dateCreate,
+    dateUpdate) {
     if (createMode) {
       try {
         // Back End
@@ -130,7 +135,9 @@ export default function CoursesPage() {
           description,
           image,
           teacher,
-          classroom
+          classroom,
+          dateCreate,
+          dateUpdate,
         );
 
         // Front End
@@ -150,7 +157,9 @@ export default function CoursesPage() {
           description,
           image,
           teacher,
-          classroom
+          classroom,
+          dateCreate,
+          dateUpdate = dataFormatada,
         );
 
         // Front End
@@ -164,6 +173,8 @@ export default function CoursesPage() {
                 image,
                 teacher,
                 classroom,
+                dateCreate,
+                dateUpdate,
               };
             }
             return course;

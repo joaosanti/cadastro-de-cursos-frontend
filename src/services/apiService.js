@@ -15,7 +15,9 @@ export async function apiCreateCourse(
   description,
   image,
   teacher,
-  classroom
+  classroom,
+  dateCreate,
+  dateUpdate,
 ) {
   const newCourse = create('/course', {
     id: getNewId(),
@@ -24,6 +26,8 @@ export async function apiCreateCourse(
     image,
     teacher,
     classroom,
+    dateCreate,
+    dateUpdate,
   });
 
   return newCourse;
@@ -35,7 +39,9 @@ export async function apiUpdateCourse(
   description,
   image,
   teacher,
-  classroom
+  classroom,
+  dateCreate,
+  dateUpdate,
 ) {
   const updatedCourse = edit(`/course/${courseId}`, {
     title,
@@ -43,6 +49,8 @@ export async function apiUpdateCourse(
     image,
     teacher,
     classroom,
+    dateCreate,
+    dateUpdate,
   });
 
   return updatedCourse;

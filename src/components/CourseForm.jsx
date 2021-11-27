@@ -15,10 +15,7 @@ export default function CourseForm({
   const [teacher, setTeacher] = useState(Course?.teacher || '');
   const [classroom, setClassroom] = useState(Course?.classroom || '');
   const [dateCreate, setDateCreate] = useState(Course?.dateCreate || '');
-  //const [dateUpdate, setDateUpdate] = useState(Course?.dateUpdate || '');
   const [error, setError] = useState('');
-
-
 
   let data = new Date();
   let dataFormatada = (data.getDate() + "/" + ((data.getMonth() + 1)) + "/" + (data.getFullYear()));
@@ -51,8 +48,6 @@ export default function CourseForm({
   function handleClassroomChange(newClassroom) {
     setClassroom(newClassroom);
   }
-
-
 
   function clearFields() {
     setTitle('');
